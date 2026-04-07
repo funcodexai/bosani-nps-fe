@@ -38,17 +38,6 @@
   border: 1px solid var(--border);
 }
 
-.api-base-hint {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin: 0.75rem 0 0;
-}
-
-.api-base-hint code {
-  font-size: 0.85em;
-  word-break: break-all;
-}
-
 .grid {
   display: grid;
   gap: 1.25rem;
