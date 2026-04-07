@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { fetchNpsByAccount, submitNps, type NpsRow } from './api';
+import { fetchNpsByAccount, getApiBase, submitNps, type NpsRow } from './api';
 import './App.css';
 
 const MIN_SCORE = 0;
@@ -71,6 +71,11 @@ export default function App() {
           Backend mengikuti API di <code>bosani-nps</code>: kirim skor 0–10 per akun
           Instagram, atau lihat riwayat skor untuk satu akun.
         </p>
+        {import.meta.env.PROD && (
+          <p className="api-base-hint" role="status">
+            API: <code>{getApiBase() || '(origin ini — set di api-config.js)'}</code>
+          </p>
+        )}
       </header>
 
       <main className="grid">
@@ -165,9 +170,9 @@ export default function App() {
 
       <footer className="foot">
         <p>
-          Deploy di VM: jalankan API di port 3000, build frontend dengan{' '}
-          <code>npm run build</code>, serve folder <code>dist</code> (nginx) dan set{' '}
-          <code>VITE_API_BASE</code> jika API di host/port lain.
+          Beda VM: isi <code>public/api-config.js</code> (URL backend), deploy <code>dist</code>, lalu
+          di backend set <code>FRONTEND_ORIGIN</code> ke URL frontend atau{' '}
+          <code>CORS_REFLECT_ORIGIN=true</code> (hanya lab).
         </p>
       </footer>
     </div>
